@@ -1,6 +1,6 @@
 import { Component, ViewChild, OnInit, Inject } from '@angular/core';
 import { MatPaginator, MatTableDataSource } from '@angular/material';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 
 import { ComponentDialogComponent } from '../component-dialog/component-dialog.component';
