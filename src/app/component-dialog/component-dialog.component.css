@@ -1,0 +1,19 @@
+.component-detail-table {
+	width: 100%;
+}
+
+.component-detail-row {
+	padding: 0.5em;
+	height: 2em;
+}
+
+.table-header {
+	font-weight: bold;
+	color: #000;
+	width: 6em;
+	vertical-align: text-top;
+}
+
+.table-content {
+	color: #777;
+}

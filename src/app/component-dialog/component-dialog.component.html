@@ -1,0 +1,51 @@
+<h1 mat-dialog-title>{{ data.name }} - Details</h1>
+<div mat-dialog-content>
+	<table class="component-detail-table">
+		<tr class="component-detail-row">
+			<td class="table-header">Type:</td>
+			<td class="table-content">{{ data.type }}</td>
+		</tr>
+		<tr class="component-detail-row">
+			<td class="table-header">Status:</td>
+			<td class="table-content">{{ data.status }}</td>
+		</tr>
+		<tr class="component-detail-row">
+			<td class="table-header">Clients:</td>
+			<td class="table-content">{{ data.clients }}</td>
+		</tr>
+		<tr class="component-detail-row">
+			<td class="table-header">Description:</td>
+			<td class="table-content">{{ data.description }}</td>
+		</tr>
+	</table>
+
+  <div>
+  	<p><b>Versions:</b></p>
+  	<div class="mat-elevation-z8">
+		  <mat-table #table [dataSource]="versions">
+
+		    <ng-container matColumnDef="id">
+		      <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+		      <mat-cell *matCellDef="let version"> {{ version.id }} </mat-cell>
+		    </ng-container>
+
+		    <ng-container matColumnDef="date">
+		      <mat-header-cell *matHeaderCellDef> Date </mat-header-cell>
+		      <mat-cell *matCellDef="let version"> {{ version.date }} </mat-cell>
+		    </ng-container>
+
+		    <ng-container matColumnDef="versionControl">
+		      <mat-header-cell *matHeaderCellDef> Version control </mat-header-cell>
+		      <mat-cell *matCellDef="let version"> <a mat-raised-button href="{{ version.url }}" target="_blank">View GitHub/Bitbucket</a> </mat-cell>
+		    </ng-container>
+
+		    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+		    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+		  </mat-table>
+		</div>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button mat-button color="accent" disabled>Compare</button>
+  <button mat-button color="accent" (click)="closeDialog()">Close</button>
+</div>

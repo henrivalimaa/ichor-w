@@ -1,0 +1,24 @@
+<div class="login-header">
+	<h1>ICHOR</h1>
+	<small>Manage and build</small>
+</div>
+
+<div class="login-form center-x">
+	<form #form="ngForm" (ngSubmit)="onSubmit()" novalidate>
+		<h2 class="text-center">MISE Login</h2>
+		<div>
+			<mat-form-field>
+		    <input matInput type="email" placeholder="Username" autocomplete="off" [(ngModel)]="user.username" [ngModelOptions]="{standalone: true}" required>
+		  </mat-form-field>
+		</div>
+		<div>
+			<mat-form-field>
+		    <input matInput type="password" placeholder="Password" [(ngModel)]="user.password" [ngModelOptions]="{standalone: true}" required>
+		  </mat-form-field>
+		</div>
+		<button type="submit" mat-raised-button color="accent" class="default-btn" (click)="onSubmit()">Login</button>
+	</form>
+</div>
+<div *ngIf="loginError" class="snack-bar" [@snackBarSlide]>
+	<p>User not found!</p>
+</div>

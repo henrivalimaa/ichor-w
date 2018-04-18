@@ -1,0 +1,9 @@
+.dashboard {
+	max-width: 50em;
+}
+
+.top-menu {
+	position: fixed;
+	top: 1em;
+	right: 1em
+}
