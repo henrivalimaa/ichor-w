@@ -25,7 +25,7 @@ export class DashboardComponent implements OnInit {
   openDialog(component: any): void {
     let dialogRef = this.dialog.open(ComponentDialogComponent, {
       width: '60em',
-      data: component;
+      data: component
     });
 
     dialogRef.afterClosed().subscribe(result => {
