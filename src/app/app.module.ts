@@ -15,7 +15,7 @@ import { MatMenuModule } from '@angular/material/menu';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import { DashboardComponent, ComponentDialog } from './dashboard/dashboard.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 
 import { UserService } from './user.service';

@@ -18,6 +18,7 @@ export class DashboardComponent implements OnInit {
 
   constructor(public dialog: MatDialog, private router: Router) { }
 
+  ngOnInit() {}
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
@@ -40,9 +41,17 @@ export class DashboardComponent implements OnInit {
 
 export interface Component {
   name: string;
-  position: number;
-  weight: number;
-  symbol: string;
+  type: string;
+  clients: string;
+  status: string;
+  versions: Version[];
+  description: string;
+}
+
+export interface Version {
+  id: string;
+  date: string;
+  url: string;
 }
 
 const COMPONENT_DATA: Component[] = [
