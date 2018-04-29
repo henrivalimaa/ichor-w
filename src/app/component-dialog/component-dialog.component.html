@@ -17,12 +17,22 @@
 			<td class="table-header">Description:</td>
 			<td class="table-content">{{ data.description }}</td>
 		</tr>
+		<tr class="component-detail-row">
+			<td class="table-header">Dependencies:</td>
+			<td class="table-content">
+				<ul>
+					<li *ngFor="let dependency of data.dependencies">
+						<span>{{ dependency.component }} - </span>
+						<span>version: {{ dependency.version }}</span>
+					</li>
+				</ul>
+			</td>
+		</tr>
 	</table>
-
   <div>
   	<p><b>Versions:</b></p>
   	<div class="mat-elevation-z8">
-		  <mat-table #table [dataSource]="versions">
+		  <mat-table #table [dataSource]="data.versions">
 
 		    <ng-container matColumnDef="id">
 		      <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>

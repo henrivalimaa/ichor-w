@@ -5,7 +5,12 @@
 	<div>
 		<mat-tab-group>
 	  	<mat-tab label="Components">
-		      <mat-table #table [dataSource]="dataSource">
+	  		<div>
+				  <mat-form-field>
+				    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+				  </mat-form-field>
+				</div>
+		    <mat-table #table [dataSource]="dataSource">
 
 			    <!-- Name Column -->
 			    <ng-container matColumnDef="name">

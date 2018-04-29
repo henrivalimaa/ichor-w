@@ -1,5 +1,5 @@
 import { Component, ViewChild, OnInit, Inject } from '@angular/core';
-import { MatPaginator, MatTableDataSource } from '@angular/material';
+import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 
@@ -15,12 +15,21 @@ export class DashboardComponent implements OnInit {
   dataSource = new MatTableDataSource<Component>(COMPONENT_DATA);
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
   constructor(public dialog: MatDialog, private router: Router) { }
 
   ngOnInit() {}
+
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
+
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim();
+    filterValue = filterValue.toLowerCase();
+    this.dataSource.filter = filterValue;
   }
 
   openDialog(component: any): void {
@@ -39,12 +48,13 @@ export class DashboardComponent implements OnInit {
   }
 }
 
-export interface Component {
+export class Component {
   name: string;
   type: string;
   clients: string;
   status: string;
-  versions: Version[];
+  dependencies: any;
+  versions: any;
   description: string;
 }
 
@@ -68,7 +78,12 @@ const COMPONENT_DATA: Component[] = [
       { id: '1.0.5', date: 'Mar 25 2015 02:00:00', url: 'https://github.com/henrivalimaa/ichor-w' },
       { id: '2.0.1', date: 'Mar 25 2015 02:00:00', url: 'https://github.com/henrivalimaa/ichor-w' },
       { id: '2.0.2', date: 'Mar 25 2015 02:00:00', url: 'https://github.com/henrivalimaa/ichor-w' },
-    ], 
+    ],
+    dependencies: [
+      { component: 'Oxygen core', version: '1.02'},
+      { component: 'Copper', version: '1.02'},
+      { component: 'Titanium core', version: '1.05'}
+    ],
     description:'Customer relationship management (CRM) is an approach to manage a companys interaction with current and potential customers. It uses data analysis about customers history with a company to improve business relationships with customers, specifically focusing on customer retention and ultimately driving sales growth. One important aspect of the CRM approach is the systems of CRM that compile data from a range of different communication channels, including a companys website, telephone, email, live chat, marketing materials, and more recently, social media. Through the CRM approach and the systems used to facilitate it, businesses learn more about their target audiences and how to best cater to their needs.'
   },
   {
@@ -84,7 +99,12 @@ const COMPONENT_DATA: Component[] = [
       { id: '1.0.5', date: 'Mar 25 2015 02:00:00', url: 'https://github.com/henrivalimaa/ichor-w' },
       { id: '2.0.1', date: 'Mar 25 2015 02:00:00', url: 'https://github.com/henrivalimaa/ichor-w' },
       { id: '2.0.2', date: 'Mar 25 2015 02:00:00', url: 'https://github.com/henrivalimaa/ichor-w' },
-    ], 
+    ],
+    dependencies: [
+      { component: 'Oxygen core', version: '1.02'},
+      { component: 'Copper', version: '1.02'},
+      { component: 'Titanium core', version: '1.05'}
+    ],
     description:'Customer relationship management (CRM) is an approach to manage a companys interaction with current and potential customers. It uses data analysis about customers history with a company to improve business relationships with customers, specifically focusing on customer retention and ultimately driving sales growth. One important aspect of the CRM approach is the systems of CRM that compile data from a range of different communication channels, including a companys website, telephone, email, live chat, marketing materials, and more recently, social media. Through the CRM approach and the systems used to facilitate it, businesses learn more about their target audiences and how to best cater to their needs.'
   },
   {
@@ -100,7 +120,12 @@ const COMPONENT_DATA: Component[] = [
       { id: '1.0.5', date: 'Mar 25 2015 02:00:00', url: 'https://github.com/henrivalimaa/ichor-w' },
       { id: '2.0.1', date: 'Mar 25 2015 02:00:00', url: 'https://github.com/henrivalimaa/ichor-w' },
       { id: '2.0.2', date: 'Mar 25 2015 02:00:00', url: 'https://github.com/henrivalimaa/ichor-w' },
-    ], 
+    ],
+    dependencies: [
+      { component: 'Oxygen core', version: '1.02'},
+      { component: 'Copper', version: '1.02'},
+      { component: 'Titanium core', version: '1.05'}
+    ],
     description:'Customer relationship management (CRM) is an approach to manage a companys interaction with current and potential customers. It uses data analysis about customers history with a company to improve business relationships with customers, specifically focusing on customer retention and ultimately driving sales growth. One important aspect of the CRM approach is the systems of CRM that compile data from a range of different communication channels, including a companys website, telephone, email, live chat, marketing materials, and more recently, social media. Through the CRM approach and the systems used to facilitate it, businesses learn more about their target audiences and how to best cater to their needs.'
   },
   {
@@ -116,7 +141,12 @@ const COMPONENT_DATA: Component[] = [
       { id: '1.0.5', date: 'Mar 25 2015 02:00:00', url: 'https://github.com/henrivalimaa/ichor-w' },
       { id: '2.0.1', date: 'Mar 25 2015 02:00:00', url: 'https://github.com/henrivalimaa/ichor-w' },
       { id: '2.0.2', date: 'Mar 25 2015 02:00:00', url: 'https://github.com/henrivalimaa/ichor-w' },
-    ], 
+    ],
+    dependencies: [
+      { component: 'Oxygen core', version: '1.02'},
+      { component: 'Copper', version: '1.02'},
+      { component: 'Titanium core', version: '1.05'}
+    ],
     description:'Customer relationship management (CRM) is an approach to manage a companys interaction with current and potential customers. It uses data analysis about customers history with a company to improve business relationships with customers, specifically focusing on customer retention and ultimately driving sales growth. One important aspect of the CRM approach is the systems of CRM that compile data from a range of different communication channels, including a companys website, telephone, email, live chat, marketing materials, and more recently, social media. Through the CRM approach and the systems used to facilitate it, businesses learn more about their target audiences and how to best cater to their needs.'
   },
   {
@@ -132,7 +162,12 @@ const COMPONENT_DATA: Component[] = [
       { id: '1.0.5', date: 'Mar 25 2015 02:00:00', url: 'https://github.com/henrivalimaa/ichor-w' },
       { id: '2.0.1', date: 'Mar 25 2015 02:00:00', url: 'https://github.com/henrivalimaa/ichor-w' },
       { id: '2.0.2', date: 'Mar 25 2015 02:00:00', url: 'https://github.com/henrivalimaa/ichor-w' },
-    ], 
+    ],
+    dependencies: [
+      { component: 'Oxygen core', version: '1.02'},
+      { component: 'Copper', version: '1.02'},
+      { component: 'Titanium core', version: '1.05'}
+    ],
     description:'Customer relationship management (CRM) is an approach to manage a companys interaction with current and potential customers. It uses data analysis about customers history with a company to improve business relationships with customers, specifically focusing on customer retention and ultimately driving sales growth. One important aspect of the CRM approach is the systems of CRM that compile data from a range of different communication channels, including a companys website, telephone, email, live chat, marketing materials, and more recently, social media. Through the CRM approach and the systems used to facilitate it, businesses learn more about their target audiences and how to best cater to their needs.'
   },
   {
@@ -148,7 +183,12 @@ const COMPONENT_DATA: Component[] = [
       { id: '1.0.5', date: 'Mar 25 2015 02:00:00', url: 'https://github.com/henrivalimaa/ichor-w' },
       { id: '2.0.1', date: 'Mar 25 2015 02:00:00', url: 'https://github.com/henrivalimaa/ichor-w' },
       { id: '2.0.2', date: 'Mar 25 2015 02:00:00', url: 'https://github.com/henrivalimaa/ichor-w' },
-    ], 
+    ],
+    dependencies: [
+      { component: 'Oxygen core', version: '1.02'},
+      { component: 'Copper', version: '1.02'},
+      { component: 'Titanium core', version: '1.05'}
+    ],
     description:'Customer relationship management (CRM) is an approach to manage a companys interaction with current and potential customers. It uses data analysis about customers history with a company to improve business relationships with customers, specifically focusing on customer retention and ultimately driving sales growth. One important aspect of the CRM approach is the systems of CRM that compile data from a range of different communication channels, including a companys website, telephone, email, live chat, marketing materials, and more recently, social media. Through the CRM approach and the systems used to facilitate it, businesses learn more about their target audiences and how to best cater to their needs.'
   },
   {
@@ -164,6 +204,11 @@ const COMPONENT_DATA: Component[] = [
       { id: '1.0.5', date: 'Mar 25 2015 02:00:00', url: 'https://github.com/henrivalimaa/ichor-w' },
       { id: '2.0.1', date: 'Mar 25 2015 02:00:00', url: 'https://github.com/henrivalimaa/ichor-w' },
       { id: '2.0.2', date: 'Mar 25 2015 02:00:00', url: 'https://github.com/henrivalimaa/ichor-w' },
+    ],
+    dependencies: [
+      { component: 'Oxygen core', version: '1.02'},
+      { component: 'Copper', version: '1.02'},
+      { component: 'Titanium core', version: '1.05'}
     ], 
     description:'Customer relationship management (CRM) is an approach to manage a companys interaction with current and potential customers. It uses data analysis about customers history with a company to improve business relationships with customers, specifically focusing on customer retention and ultimately driving sales growth. One important aspect of the CRM approach is the systems of CRM that compile data from a range of different communication channels, including a companys website, telephone, email, live chat, marketing materials, and more recently, social media. Through the CRM approach and the systems used to facilitate it, businesses learn more about their target audiences and how to best cater to their needs.'
   },
@@ -180,7 +225,12 @@ const COMPONENT_DATA: Component[] = [
       { id: '1.0.5', date: 'Mar 25 2015 02:00:00', url: 'https://github.com/henrivalimaa/ichor-w' },
       { id: '2.0.1', date: 'Mar 25 2015 02:00:00', url: 'https://github.com/henrivalimaa/ichor-w' },
       { id: '2.0.2', date: 'Mar 25 2015 02:00:00', url: 'https://github.com/henrivalimaa/ichor-w' },
-    ], 
+    ],
+    dependencies: [
+      { component: 'Oxygen core', version: '1.02'},
+      { component: 'Copper', version: '1.02'},
+      { component: 'Titanium core', version: '1.05'}
+    ],
     description:'Customer relationship management (CRM) is an approach to manage a companys interaction with current and potential customers. It uses data analysis about customers history with a company to improve business relationships with customers, specifically focusing on customer retention and ultimately driving sales growth. One important aspect of the CRM approach is the systems of CRM that compile data from a range of different communication channels, including a companys website, telephone, email, live chat, marketing materials, and more recently, social media. Through the CRM approach and the systems used to facilitate it, businesses learn more about their target audiences and how to best cater to their needs.'
   },
   {
@@ -196,7 +246,12 @@ const COMPONENT_DATA: Component[] = [
       { id: '1.0.5', date: 'Mar 25 2015 02:00:00', url: 'https://github.com/henrivalimaa/ichor-w' },
       { id: '2.0.1', date: 'Mar 25 2015 02:00:00', url: 'https://github.com/henrivalimaa/ichor-w' },
       { id: '2.0.2', date: 'Mar 25 2015 02:00:00', url: 'https://github.com/henrivalimaa/ichor-w' },
-    ], 
+    ],
+    dependencies: [
+      { component: 'Oxygen core', version: '1.02'},
+      { component: 'Copper', version: '1.02'},
+      { component: 'Titanium core', version: '1.05'}
+    ],
     description:'Customer relationship management (CRM) is an approach to manage a companys interaction with current and potential customers. It uses data analysis about customers history with a company to improve business relationships with customers, specifically focusing on customer retention and ultimately driving sales growth. One important aspect of the CRM approach is the systems of CRM that compile data from a range of different communication channels, including a companys website, telephone, email, live chat, marketing materials, and more recently, social media. Through the CRM approach and the systems used to facilitate it, businesses learn more about their target audiences and how to best cater to their needs.'
   },
   {
@@ -212,7 +267,12 @@ const COMPONENT_DATA: Component[] = [
       { id: '1.0.5', date: 'Mar 25 2015 02:00:00', url: 'https://github.com/henrivalimaa/ichor-w' },
       { id: '2.0.1', date: 'Mar 25 2015 02:00:00', url: 'https://github.com/henrivalimaa/ichor-w' },
       { id: '2.0.2', date: 'Mar 25 2015 02:00:00', url: 'https://github.com/henrivalimaa/ichor-w' },
-    ], 
+    ],
+    dependencies: [
+      { component: 'Oxygen core', version: '1.02'},
+      { component: 'Copper', version: '1.02'},
+      { component: 'Titanium core', version: '1.05'}
+    ],
     description:'Customer relationship management (CRM) is an approach to manage a companys interaction with current and potential customers. It uses data analysis about customers history with a company to improve business relationships with customers, specifically focusing on customer retention and ultimately driving sales growth. One important aspect of the CRM approach is the systems of CRM that compile data from a range of different communication channels, including a companys website, telephone, email, live chat, marketing materials, and more recently, social media. Through the CRM approach and the systems used to facilitate it, businesses learn more about their target audiences and how to best cater to their needs.'
   },
   {
@@ -228,7 +288,12 @@ const COMPONENT_DATA: Component[] = [
       { id: '1.0.5', date: 'Mar 25 2015 02:00:00', url: 'https://github.com/henrivalimaa/ichor-w' },
       { id: '2.0.1', date: 'Mar 25 2015 02:00:00', url: 'https://github.com/henrivalimaa/ichor-w' },
       { id: '2.0.2', date: 'Mar 25 2015 02:00:00', url: 'https://github.com/henrivalimaa/ichor-w' },
-    ], 
+    ],
+    dependencies: [
+      { component: 'Oxygen core', version: '1.02'},
+      { component: 'Copper', version: '1.02'},
+      { component: 'Titanium core', version: '1.05'}
+    ],
     description:'Customer relationship management (CRM) is an approach to manage a companys interaction with current and potential customers. It uses data analysis about customers history with a company to improve business relationships with customers, specifically focusing on customer retention and ultimately driving sales growth. One important aspect of the CRM approach is the systems of CRM that compile data from a range of different communication channels, including a companys website, telephone, email, live chat, marketing materials, and more recently, social media. Through the CRM approach and the systems used to facilitate it, businesses learn more about their target audiences and how to best cater to their needs.'
   },
   {
@@ -244,7 +309,12 @@ const COMPONENT_DATA: Component[] = [
       { id: '1.0.5', date: 'Mar 25 2015 02:00:00', url: 'https://github.com/henrivalimaa/ichor-w' },
       { id: '2.0.1', date: 'Mar 25 2015 02:00:00', url: 'https://github.com/henrivalimaa/ichor-w' },
       { id: '2.0.2', date: 'Mar 25 2015 02:00:00', url: 'https://github.com/henrivalimaa/ichor-w' },
-    ], 
+    ],
+    dependencies: [
+      { component: 'Oxygen core', version: '1.02'},
+      { component: 'Copper', version: '1.02'},
+      { component: 'Titanium core', version: '1.05'}
+    ],
     description:'Customer relationship management (CRM) is an approach to manage a companys interaction with current and potential customers. It uses data analysis about customers history with a company to improve business relationships with customers, specifically focusing on customer retention and ultimately driving sales growth. One important aspect of the CRM approach is the systems of CRM that compile data from a range of different communication channels, including a companys website, telephone, email, live chat, marketing materials, and more recently, social media. Through the CRM approach and the systems used to facilitate it, businesses learn more about their target audiences and how to best cater to their needs.'
   },
 ];

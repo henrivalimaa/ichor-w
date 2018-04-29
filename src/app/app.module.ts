@@ -12,6 +12,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatSortModule } from '@angular/material/sort';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -42,6 +43,7 @@ import { ComponentDialogComponent } from './component-dialog/component-dialog.co
     MatTabsModule,
     MatDialogModule,
     MatMenuModule,
+    MatSortModule,
     AngularFontAwesomeModule
   ],
   providers: [UserService],
