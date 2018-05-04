@@ -9,6 +9,22 @@
     border-radius: 10px;
 }
 
+@media only screen and (max-width: 600px) {
+    .login-form {
+        top: 55%;
+        width: 90%;
+        border-radius: 0;
+    }
+
+    .login-header {
+        top: 0em !important;
+    }
+
+    .login-header small {
+        visibility: hidden;
+    }
+}
+
 .login-header {
 	position: relative;
 	top: 6em;

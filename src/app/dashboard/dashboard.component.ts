@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnInit, Inject } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
@@ -12,7 +12,9 @@ import { ComponentDialogComponent } from '../component-dialog/component-dialog.c
 })
 export class DashboardComponent implements OnInit {
 	displayedColumns = ['name', 'type', 'clients'];
-  dataSource = new MatTableDataSource<Component>(COMPONENT_DATA);
+  configColumns = ['name', 'file', 'download'];
+  dataSource = new MatTableDataSource<any>(COMPONENT_DATA);
+  configurationData = new MatTableDataSource<any>(CONFIG_DATA);
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -30,6 +32,7 @@ export class DashboardComponent implements OnInit {
     filterValue = filterValue.trim();
     filterValue = filterValue.toLowerCase();
     this.dataSource.filter = filterValue;
+    this.configurationData.filter = filterValue;
   }
 
   openDialog(component: any): void {
@@ -43,28 +46,18 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  logOut(): void {
+  logout(): void {
     this.router.navigate(['login']);
   }
 }
 
-export class Component {
-  name: string;
-  type: string;
-  clients: string;
-  status: string;
-  dependencies: any;
-  versions: any;
-  description: string;
-}
+const CONFIG_DATA: any[] = [
+  { name: 'Docker compose file - Oxygen', file: 'docker-compose.yaml', link: '/assets/resources/docker-compose.yaml'},
+  { name: 'Dockerfile - Oxygen client', file: 'Dockerfile', link: '/assets/resources/Dockerfile'},
+  { name: 'Dockerfile - Oxygen API ', file: 'Dockerfile', link: '/assets/resources/Dockerfile'}
+]
 
-export interface Version {
-  id: string;
-  date: string;
-  url: string;
-}
-
-const COMPONENT_DATA: Component[] = [
+const COMPONENT_DATA: any[] = [
   {
     name: 'Hydrogen', 
     type:'SRM', 

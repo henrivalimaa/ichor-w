@@ -4,45 +4,78 @@
 	</div>
 	<div>
 		<mat-tab-group>
-	  	<mat-tab label="Components">
-	  		<div>
-				  <mat-form-field>
-				    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
-				  </mat-form-field>
+			<mat-tab label="Components">
+				<div class="search">
+				  	<mat-form-field>
+						<input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+				  	</mat-form-field>
 				</div>
-		    <mat-table #table [dataSource]="dataSource">
+				<mat-table #table [dataSource]="dataSource">
 
-			    <!-- Name Column -->
-			    <ng-container matColumnDef="name">
-			      <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-			      <mat-cell *matCellDef="let component" (click)="openDialog(component)"> {{component.name}} </mat-cell>
-			    </ng-container>
+					<!-- Name Column -->
+					<ng-container matColumnDef="name">
+					  <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+					  <mat-cell *matCellDef="let component" (click)="openDialog(component)"> {{component.name}} </mat-cell>
+					</ng-container>
 
-			    <!-- Type Column -->
-			    <ng-container matColumnDef="type">
-			      <mat-header-cell *matHeaderCellDef> Type </mat-header-cell>
-			      <mat-cell *matCellDef="let component" (click)="openDialog(component)"> {{component.type}} </mat-cell>
-			    </ng-container>
+					<!-- Type Column -->
+					<ng-container matColumnDef="type">
+					  <mat-header-cell *matHeaderCellDef> Type </mat-header-cell>
+					  <mat-cell *matCellDef="let component" (click)="openDialog(component)"> {{component.type}} </mat-cell>
+					</ng-container>
 
-			    <!-- Clients Column -->
-			    <ng-container matColumnDef="clients">
-			      <mat-header-cell *matHeaderCellDef> Clients </mat-header-cell>
-			      <mat-cell *matCellDef="let component" (click)="openDialog(component)"> {{component.clients}} </mat-cell>
-			    </ng-container>
+					<!-- Clients Column -->
+					<ng-container matColumnDef="clients">
+					  <mat-header-cell *matHeaderCellDef> Clients </mat-header-cell>
+					  <mat-cell *matCellDef="let component" (click)="openDialog(component)"> {{component.clients}} </mat-cell>
+					</ng-container>
 
-			    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-			    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-			  </mat-table>
+					<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+					<mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+				</mat-table>
 
-			  <mat-paginator #paginator
-			                 [pageSize]="10"
-			                 [pageSizeOptions]="[5, 10, 20]"
-			                 [showFirstLastButtons]="true">
-			  </mat-paginator>
-		  </mat-tab>
-		  <mat-tab label="Analytics">
-		    <h2 class="text-center">Coming soon...</h2>
-		  </mat-tab>
+				<mat-paginator #paginator
+								[pageSize]="10"
+								[pageSizeOptions]="[5, 10, 20]"
+								[showFirstLastButtons]="true">
+				</mat-paginator>
+			</mat-tab>
+			<mat-tab label="Configurations">
+				<div class="search">
+				  	<mat-form-field>
+						<input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+				  	</mat-form-field>
+				</div>
+				<mat-table #table [dataSource]="configurationData">
+
+					<!-- Name Column -->
+					<ng-container matColumnDef="name">
+					  <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+					  <mat-cell *matCellDef="let config"> {{config.name}} </mat-cell>
+					</ng-container>
+
+					<!-- Type Column -->
+					<ng-container matColumnDef="file">
+					  <mat-header-cell *matHeaderCellDef> File </mat-header-cell>
+					  <mat-cell *matCellDef="let config"> {{config.file}} </mat-cell>
+					</ng-container>
+
+					<!-- Clients Column -->
+					<ng-container matColumnDef="download">
+					  <mat-header-cell *matHeaderCellDef> Download </mat-header-cell>
+					  <mat-cell *matCellDef="let config"><a href="{{config.link}}" download class="btn-default">Download</a> </mat-cell>
+					</ng-container>
+
+					<mat-header-row *matHeaderRowDef="configColumns"></mat-header-row>
+					<mat-row *matRowDef="let row; columns: configColumns;"></mat-row>
+				</mat-table>
+
+				<mat-paginator #paginator
+								[pageSize]="10"
+								[pageSizeOptions]="[5, 10, 20]"
+								[showFirstLastButtons]="true">
+				</mat-paginator>
+			</mat-tab>
 		</mat-tab-group>
 	</div>
 </div>
@@ -53,10 +86,10 @@
 	</button>
 	<mat-menu #menu="matMenu">
 		<button mat-menu-item disabled>
-	  	<span>Settings</span>
-  	</button>
-	  <button mat-menu-item (click)="logOut()">
-	  	<span>Logout</span>
-  	</button>
+		<span>Settings</span>
+	</button>
+	  <button mat-menu-item (click)="logout()">
+		<span>Logout</span>
+	</button>
 	</mat-menu>
 </div>
